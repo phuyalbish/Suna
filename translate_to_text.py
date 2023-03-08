@@ -68,7 +68,6 @@ def save_transcript(audio_url,transcriptedfile):
         text_filename = transcriptedfile
         with open(text_filename, "w") as f:
             f.write(data['text'])
-        print('transcription saved')
     elif error:
         text_filename = transcriptedfile
         with open(text_filename, "w") as f:

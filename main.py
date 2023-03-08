@@ -7,7 +7,8 @@ from ask_to_chatgpt import askToChatGPT
 
 recorded_sound_filename = "sounds/input.wav"
 transcriptedfile = "sounds/transcriptedtext.txt"
-transcripted_voice = "sounds/output.wav"
+chat_voice = "sounds/output_voice.wav"
+chat_text= "sounds/output_text.txt"
 language = "en"
 
 
@@ -15,7 +16,7 @@ language = "en"
 recordVoice()
 audio_url=upload(recorded_sound_filename)
 save_transcript(audio_url,transcriptedfile)
-askToChatGPT(transcriptedfile,transcripted_voice)
+askToChatGPT(transcriptedfile,chat_voice,chat_text)
 
 
-playsound(transcripted_voice)
+playsound(chat_voice)
