@@ -6,13 +6,12 @@ from secret_api import CHAT_APT
 openai.api_key =CHAT_APT
 model_engine = "text-davinci-003"
 
-def askToChatGPT(transcriptedfile,chat_voice,chat_text):
-    with open(transcriptedfile) as f:
-        prompt =f.read()
+def askToChatGPT(transcriptedtext,chat_voice,chat_text):
+    
     
     completion = openai.Completion.create(
         engine = model_engine,
-        prompt = prompt,
+        prompt = transcriptedtext,
         max_tokens = 1024,
         n=1,
         stop=None,
