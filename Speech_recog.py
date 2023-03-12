@@ -12,6 +12,6 @@ def speechRecognition():
             text = recognizer.recognize_google(audio)
             text = text.lower()
             print(f"Me:{text}")
-    except speech_recognition.UnknownValueError():
-        text = "Didn't  you got me?"
+    except:
+        text = "didn't you understand me?"
     return text        
