@@ -125,3 +125,4 @@ function watchPlayer(){
     document.getElementById('musicloading').style.display = 'none';
     document.getElementById("musicytvideo").style.display = "block";
 }
+
