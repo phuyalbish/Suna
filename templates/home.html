@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animation.css')}}">
+    <link href='https://fonts.googleapis.com/css?family=Caveat Brush' rel='stylesheet'>
+</head>
+<body  id="body">
+    <div id="background">
+        <img src="{{ url_for('static', filename='images/background.jpg')}}" alt="" id="backgroundimg">
+    </div>
+    
+
+        <div id="innercontent">
+            <div id="navbar">
+                <img src="{{ url_for('static', filename='images/logo.png')}}" alt="" id="logo">
+                <div class="" id="loginbox">
+                    <p>Login</p>
+                </div>
+            </div>
+           
+                    
+                    <div class="messagebox">
+
+
+                        <div class="scrollbutton" onclick="scrollToLatest()">
+                            <img src="{{ url_for('static', filename='images/arrowbutton.png')}}" style="width:25px; padding:3px" class="scrollbuttonimg" alt="">
+                        </div>
+
+                        <div class="chatbox" id="chatbox">
+
+                                <div class="innerchat" id="innerchat">
+
+
+                                    
+                                    
+
+
+                                    {% for col in datas["datas"] %}
+                                        {% if col["type"] == 1%}
+                                            <div class="botanswer quesansboxwithauthor">
+                                                
+                                                
+                                                <div class="ansquesbox">
+                                                    <p class="authorsmessage">
+                                                    
+                                                        {{ col["message"] 
+                                                    }}
+                                                    </p>
+                                                </div>
+
+                                                <div class="authorofthestatement">
+                                                    <img src="{{ url_for('static', filename='images/chatbot.png')}}" alt="" class="authorpic">
+
+                                                    <div class="authorname">
+                                                        <h2 >Suna Member</h2>
+                                                        <p>{{col["time"]}} . {{ col["date"]}}</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        {%endif%}
+                                        {% if col["type"] == 2%}
+                                        <div class="botanswer quesansboxwithauthor">
+                                                
+                                                
+                                            <div class="ansquesbox">
+                                                <p class="authorsmessage">
+                                                
+                                                    {{ col["message"] 
+                                                }}
+                                                </p>
+                                            </div>
+
+                                            <div class="authorofthestatement">
+                                                <img src="{{ url_for('static', filename='images/chatbot.png')}}" alt="" class="authorpic">
+
+                                                <div class="authorname">
+                                                    <h2 >Chatbot</h2>
+                                                    <p>{{col["time"]}} . {{ col["date"]}}</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        {% endif %}
+
+                                    
+                                        {% if col["type"] == 3%}
+                                        <div class="musicanswer quesansboxwithauthor">
+                                        
+                                            <div class="ansquesbox" id="ansquesbox">
+                                               
+                                                {% for i in col["message"]%}
+                                                    <div class="musicvideolist">
+                                                        <div class="musicvideolistbuttons">
+
+                                                            <span style="visibility:hidden">{{ i }}</span>
+                                                            <div class="musicvideolistbuttons_buttons"  onclick="openPlayer('tgbNymZ7vqY')">
+
+                                                                <img src="{{ url_for('static', filename='images/play.png')}}" alt="" style="width:20px;">
+                                                            </div>
+                                                            <a href="https://www.youtube.com/watch?v=tgbNymZ7vqY">
+                                                                <div class="musicvideolistbuttons_buttons">
+                                                                    <img src="{{ url_for('static', filename='images/youtube.png')}}" alt="" style="width:20px;">
+                                                                </div>
+        
+                                                            </a>
+                                                        </div>
+        
+                                                        <h5>
+                                                            {{ i
+                                                        }}
+                                                        </h5>
+                                                            <img src="{{ url_for('static', filename='images/background.jpg')}}" alt="" srcset="" class="thumbnail">
+                                                        
+                                                    </div>
+                                                {%endfor%}
+                                            </div>
+                                            <div class="authorofthestatement">
+                                                <img src="{{ url_for('static', filename='images/dance.png')}}" alt="" class="authorpic">
+    
+                                                <div class="authorname">
+                                                    <h2 >MusicBot</h2>
+                                                    <p>{{col["time"]}} . {{ col["date"]}}</p>
+                                                </div>
+                                            </div>
+    
+                                        </div>
+
+
+                                        {% endif %}
+                                    {% endfor %}
+
+                                   
+                                </div>
+                        </div> 
+                        
+                        <div class="inputbutton">
+                            <input type="text" id="inputtedtext" class="inputtext" placeholder="Type your command here..">
+                            <img src="{{ url_for('static', filename='images/send.png')}}" alt="" class="sendthecommand" onclick="senddata()">
+                        </div> 
+                    </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+        
+                    <div class="musicloadingandbuttons"> 
+                        <div class="musicandloading">
+        
+                            <div class="load" id="loadingborder">
+                                <iframe id="musicytvideo" src="" allow='autoplay'>
+                                </iframe>
+                                </div>
+        
+                            <div id="musicloading">
+                                <span class="stroke"></span>
+                                <span class="stroke"></span>
+                                <span class="stroke"></span>
+                                <span class="stroke"></span>
+                                <span class="stroke"></span>
+                                <span class="stroke"></span>
+                                <span class="stroke"></span>
+                                <span class="stroke"></span>
+                            </div>
+                            <div id="audioloadingwithcontent">
+                                <div id="audioloading">
+                                        <span class="stroke"></span>
+                                        <span class="stroke"></span>
+                                        <span class="stroke"></span>
+                                        <span class="stroke"></span>
+                                        <span class="stroke"></span>
+                                        <span class="stroke"></span>
+                                        <span class="stroke"></span>
+                                        <span class="stroke"></span>
+                                </div>
+                                <p>Bohemina Rhapshody</p>
+        
+                            </div>
+        
+                            <div class="callbuttons">
+                                <div class="micbutton buttons callbtn" id="startrecord">
+                                <img class="startimg" id="startstopimg" src="{{ url_for('static', filename='images/microphone.svg')}}" alt="">
+                            </div>
+                            </div>
+        
+                    </div>
+        
+                    </div>
+                   
+                            
+                    <div class="smalliconsplayer">
+                        <img src="{{ url_for('static', filename='images/cross.svg')}}" alt=""  onclick="closePlayer()"  id ="closemusic">
+                        <img src="{{ url_for('static', filename='images/music.svg')}}" alt=""  onclick="musicPlayer()"  id ="listenmusiconly" >
+                        <img src="{{ url_for('static', filename='images/play.png')}}" alt=""  onclick="watchPlayer()"  id ="watchvideo">
+                    </div>         
+                    
+        </div>
+        <script>
+            
+            $.getJSON("data.json", function(data){
+
+                var chatgpt_data = '';
+                console.log(chatgpt_data);
+                
+            });
+
+        </script>
+    
+    <script src="{{ url_for('static', filename='js/script.js')}}">
+
+    </script>
+</body>
+
+</html>
