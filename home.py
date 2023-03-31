@@ -68,7 +68,7 @@ def voicerecord():
 def askToChatGPT(transcriptedtext):
     
     
-    CHAT_APT ="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"
+    CHAT_APT ="#Your OPENAI API here"
     
     openai.api_key =CHAT_APT
     model_engine = "text-davinci-003"
